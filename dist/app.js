@@ -1,13 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv = require("dotenv");
 const express = require("express");
 const index_1 = require("./routes/index");
 const db = require("./config/database");
+const compression = require("compression");
 const body_parser_1 = require("body-parser");
+const helmet = require("helmet");
+const cors = require("cors");
 const app = express();
+dotenv.config();
 db.allow();
+app.use(cors());
+app.use(helmet());
 app.use(body_parser_1.json());
 app.use(body_parser_1.urlencoded({ extended: false }));
+app.use(compression());
 app.use(index_1.default);
 exports.default = app;
 //# sourceMappingURL=app.js.map

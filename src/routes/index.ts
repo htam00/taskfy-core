@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { homepage } from '../controllers/app/index';
-import { addTask, allTasks, oneTask, deleteTask } from '../controllers/tasks/addTask';
+import { addTask, deleteTask } from '../controllers/tasks/addTask';
+import { allTasks } from '../controllers/tasks/allTasks';
+import { oneTask } from '../controllers/tasks/getTask';
 
 const router: any = Router();
 

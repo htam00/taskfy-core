@@ -9,24 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTask = exports.addTask = void 0;
+exports.oneTask = void 0;
 const Tasks_1 = require("../../models/Tasks");
-exports.addTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const title = req.body['title'];
-    const description = req.body['description'];
-    const tasks = new Tasks_1.default({ title: title, description: description });
-    yield tasks.save((err, task) => !err ? res.json(task) : console.log(err));
+exports.oneTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    yield Tasks_1.default.findById(id, (err, task) => !err ? res.json(task) : console.error(err));
     res.end();
 });
-exports.deleteTask = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const taskID = req.params.id;
-    yield Tasks_1.default.findByIdAndDelete(taskID, (err, deleted) => {
-        if (err) {
-            res.send(err);
-        }
-        const message = deleted ? 'delected success...' : 'failed delected (:';
-        res.send(message);
-    });
-    res.end();
-});
-//# sourceMappingURL=addTask.js.map
+//# sourceMappingURL=getTask.js.map
